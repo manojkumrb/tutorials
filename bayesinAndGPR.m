@@ -131,7 +131,7 @@ end
 %%%%%%%%%%%%%%%
 % for a line , giff generated
 
-ell = 1;
+ell = 2;
 sf	= 1;
 k	= @(a,b)(sf*exp(-(bsxfun(@minus,a,b').^2)./(2*ell^2)));
 
@@ -174,7 +174,7 @@ axLinePlt.XTick = 1:1:20;
 axLinePlt.YTick = -3:1:3;
 axLinePlt.YLim  = [-3 3];
 xlabel('X','fontweight','bold');
-ylabel('Deviation','fontweight','bold');
+ylabel('F(X)','fontweight','bold');
 
 fill(axLinePlt,[xx; flip(xx)],...
 			[mPost+2*sqrt(diag(varPost));...
@@ -218,7 +218,7 @@ axLinePlt.XTick = 1:1:20;
 axLinePlt.YTick = -3:1:3;
 axLinePlt.YLim  = [-3 3];
 xlabel('X','fontweight','bold');
-ylabel('Deviation','fontweight','bold');
+ylabel('F(X)','fontweight','bold');
 
 
 fill(axLinePlt,[xx; flip(xx)],...
@@ -227,13 +227,19 @@ fill(axLinePlt,[xx; flip(xx)],...
 
 for i=1:nSample	
 	
-	hPline = plot(axLinePlt,xx,sample(:,i),'-','color',[56,108,176]/256,'linewidth',1.5);
+	
 	
 	if i==1
+		hPline	= plot(axLinePlt,xx,sample(:,i),'-','color',[56,108,176]/256,'linewidth',1.5);
+		hPoints = scatter(axLinePlt,XX,sample(idXTest,i),'r','filled');
 		gif('1dUnConditonal.gif','frame',unCondFig,'DelayTime',0.3);
 	else
+		hPline	= plot(axLinePlt,xx,sample(:,i),'-','color',[56,108,176]/256,'linewidth',1.5);
+		hPoints = scatter(axLinePlt,XX,sample(idXTest,i),'r','filled');
 		gif
 	end
 	
 	delete(hPline);
+	delete(hPoints);
+	
 end
