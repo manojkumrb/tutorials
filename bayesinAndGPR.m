@@ -3,7 +3,7 @@
 
 close all; clear
 dbstop if error
-run C:\Users\babu_m\Documents\GitHub\source\initFiles.m
+run C:\Users\babu_m\Documents\GitHub\source\initFiles.m % if gif files are not needed comment this, else get gif function from files exchange
 
 %{
 %% gp conceptual
