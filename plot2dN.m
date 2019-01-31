@@ -14,7 +14,7 @@ P		= reshape(P,length(y),length(x));
 h=figure;
 ax=gca;
 imagesc(ax,x,(y),(P))
-set(gca,'YDir','normal')
+set(gca,'YDir','normal','FontSize',12)
 hold all
 xlabel('x'); ylabel('y');
 colormap(flip(hot));

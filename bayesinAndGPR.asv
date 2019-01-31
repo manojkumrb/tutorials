@@ -72,20 +72,22 @@ axLinePlt.XTickLabel={'X_1';'X_2'};
 R	= chol(sig);
 z	= repmat(mu,nSample,1) + randn(nSample,2)*R;
 
-for i=1:nSample
-	plot(h.Children,z(i,1),z(i,2),'*','linewidth',linWth)
-	plot(axLinePlt,z(i,:),'-*','linewidth',linWth)
+for i=1:nSample	
 	
+	if i<nSample
+		plot(h.Children,z(i,1),z(i,2),'*','linewidth',linWth)
+		plot(axLinePlt,z(i,:),'-*','linewidth',linWth)
+	end
+
 	%pause;
 	
+	if i==nSample		
+		plot(h.Children,z(i,1),z(i,2),'*','linewidth',linWth)
+		export_fig('2dNormal','-png','-r400','-transparent');
+		plot(axLinePlt,z(i,:),'-*','linewidth',linWth)
+		export_fig('2dParallel','-png','-r400','-transparent');
+	end
 end
-
-export_fig('2dParallel','-png','-r400','-transparent');
-
-set(0,'currentfigure',h)
-export_fig('2dNormal','-png','-r400','-transparent');
-
-
 
 %%
 % higher dimensions
@@ -173,10 +175,6 @@ for i=1:nSample
 	%pause;
 end
 
-export_fig('2dParallelCond','-png','-r400','-transparent');
-set(0,'currentfigure',bvnFig)
-export_fig('2dNormaCond','-png','-r400','-transparent');
-
 
 %}
 %%%%%%%%%%%%%%%
@@ -240,9 +238,6 @@ for i=1:nSample
 	
 % 	delete(hPline);
 end
-
-
-export_fig('6dParallelCond','-png','-r400','-transparent');
 
 
 
