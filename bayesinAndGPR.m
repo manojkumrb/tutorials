@@ -165,7 +165,7 @@ z(:,1)	= xCond;
 
 fill(axLinePlt,[1;2;2;1],...
 			[xCond;nMeanY+2*sqrt((NvarY));nMeanY-2*sqrt((NvarY));xCond], [189,215,231]/256,'facealpha',0.4,'lineStyle','none');
-legend('2 \sigma bound');
+legend({'2 \sigma bound'},'fontsize',labelFontSize);
 
 for i=1:nSample	
 	plot(bvnFig.Children,z(i,1),z(i,2),'*','linewidth',linWth)
@@ -182,13 +182,13 @@ export_fig('2dNormaCond','-png','-r400','-transparent');
 %%%%%%%%%%%%%%%
 % for a line , giff generated
 
-ell = 3;
+ell = 2;
 sf	= 1;
 k	= @(a,b)(sf*exp(-(bsxfun(@minus,a,b').^2)./(2*ell^2)));
 nSample		= 5;
 nDimension	= 6;
 mu			= zeros(nDimension,1);
-xTrain		= linspace(1,8,nDimension)';
+xTrain		= linspace(1,nDimension,nDimension)';
 kPrior		= k(xTrain,xTrain);
 idXTest		= [2;5];%input('Set a Dimension to be fixed (Enter multiple \n values as a column vector):');
 YTest		= [1;0];%input('Set the value of the fixed dimension (Enter multiple \n values as a column vector):');
@@ -225,7 +225,7 @@ axLinePlt.XTickLabel={'X_1';'X_2';'X_3';'X_4';'X_5';'X_6'};
 fill(axLinePlt,[xx; flip(xx)],...
 			[mPost+2*sqrt(diag(varPost));...
 			flip(mPost-2*sqrt(diag(varPost)))], [189,215,231]/256,'facealpha',0.4,'lineStyle','none');
-legend('2 \sigma bound');
+legend({'2 \sigma bound'},'fontsize',labelFontSize);
 
 for i=1:nSample	
 	
@@ -271,7 +271,7 @@ axLinePlt.XTickLabel={'X_1';'X_2';'X_3';'X_4';'X_5';'X_6'};
 fill(axLinePlt,[xx; flip(xx)],...
 			[mu+2*sqrt(diag(kPrior));...
 			flip(mu-2*sqrt(diag(kPrior)))], [189,215,231]/256,'facealpha',0.4,'lineStyle','none');
-legend('2 \sigma bound');
+legend({'2 \sigma bound'},'fontsize',labelFontSize);
 
 
 for i=1:nSample	
